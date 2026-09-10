@@ -45,3 +45,4 @@ Or open each file in MySQL Workbench and execute it. `wedding_functionality.sql`
 
 - The `Wedding_Summary` insert was fixed after the report was made. It used to join guests, payments and tasks in one go, which multiplied the rows and inflated the totals. The last page of the report still shows the old numbers, e.g. ₹360000 and 8 completed tasks for wedding 1 instead of ₹90000 and 2.
 - The report covers 35 of the 37 queries. "Full wedding overview" and "Vendor service utilization" are only in `wedding_functionality.sql`.
+- The sample data was cleaned up after the report was made, so the report's table and query screenshots show the earlier data. Tasks and payments now match each wedding's booked vendors and venue, vendor and task statuses agree with the wedding's status, phone numbers are unique 10-digit numbers, and emails use example.com.

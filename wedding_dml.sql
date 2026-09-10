@@ -2,11 +2,11 @@ USE wedding_management;
 
 -- Insert Users
 INSERT INTO User (name, email, phone, password, address) VALUES
-('Saurabh Kumar', 'sauravKumar@example.com', '9876543210', 'pass1', 'Banaras , UP'),
+('Saurabh Kumar', 'saurabhkumar@example.com', '9876543210', 'pass1', 'Banaras, UP'),
 ('Harsh Gupta', 'harshgupta@example.com', '9823456789', 'pass2', 'Bhopal, MP'),
 ('Vijay Singh', 'vijaysingh@example.com', '9812345678', 'pass3', 'Ujjain, MP'),
-('Arjun Dhakad', 'arjundhakad@example.com', '97555345555', 'pass4', 'Mandsaur, MP'),
-('Rohit kumar', 'rohitkumar@example.com', '97444433444', 'pass5', 'Indore, MP');
+('Arjun Dhakad', 'arjundhakad@example.com', '9755534555', 'pass4', 'Mandsaur, MP'),
+('Rohit Kumar', 'rohitkumar@example.com', '9744443344', 'pass5', 'Indore, MP');
 
 -- Insert Venues
 INSERT INTO Venue (name, address, capacity, cost_per_day) VALUES
@@ -31,15 +31,15 @@ INSERT INTO Guest (name, contact, rsvp_status, meal_preference) VALUES
 ('Daksh Dua', '7766554433', 'confirmed', 'Veg'),
 ('Sahil Kumar', '6654343322', 'declined', 'Veg'),
 ('Anjali Shaw', '9988998877', 'confirmed', 'Non-Veg'),
-('Nikunj Patel', '8877665544', 'confirmed', 'Veg'),
+('Nikunj Patel', '8871665544', 'confirmed', 'Veg'),
 ('Aadarsh', '7764354433', 'confirmed', 'Vegan'),
 ('Dasari Vijay', '6232443322', 'declined', 'Veg'),
 ('Aryan Seth', '9988898877', 'confirmed', 'Non-Veg'),
-('Ayush Topo', '5877665544', 'confirmed', 'Veg'),
-('Shubham Rajput', '73223554433', 'confirmed', 'Vegan'),
+('Ayush Topo', '9877665544', 'confirmed', 'Veg'),
+('Shubham Rajput', '7322355443', 'confirmed', 'Vegan'),
 ('Lokesh Bharaskar', '6655443322', 'declined', 'Veg'),
 ('Satya Rath', '9988978877', 'confirmed', 'Non-Veg'),
-('K S Shreeya', '2377665544', 'confirmed', 'Veg');
+('K S Shreeya', '7377665544', 'confirmed', 'Veg');
 
 -- Insert Vendors
 INSERT INTO Vendor (name, service_type, phone, email, rating, cost_estimate) VALUES
@@ -48,9 +48,10 @@ INSERT INTO Vendor (name, service_type, phone, email, rating, cost_estimate) VAL
 ('Blossom Decorators', 'Decoration', '9876123456', 'blossomdecor@example.com', 4.8, 70000),
 ('Melody DJs', 'Music', '9765432100', 'melodydj@example.com', 4.4, 30000),
 ('Elite Events', 'Planning', '9897665544', 'eliteevents@example.com', 4.9, 95000),
-('Bharat Band', 'Entertainment', '9897665544', 'bharatband@example.com', 4.9, 95000),
-('Vishal Ghodi Wala', 'Entertainment', '9897665544', 'vishalghodiwala@example.com', 4.9, 95000),
-('Rajesh Ice Cream', 'Food', '9897665544', 'rajeshicecream@example.com', 4.9, 95000);
+('Bharat Band', 'Entertainment', '9812765430', 'bharatband@example.com', 4.6, 50000),
+('Vishal Ghodi Wala', 'Entertainment', '9826543107', 'vishalghodiwala@example.com', 4.3, 55000),
+('Rajesh Ice Cream', 'Food', '9754321098', 'rajeshicecream@example.com', 4.7, 55000);
+
 -- Insert Weddings
 INSERT INTO Wedding (wedding_date, budget, status) VALUES
 ('2025-01-20', 350000, 'ongoing'),
@@ -155,9 +156,9 @@ INSERT INTO Wedding_vendor (wedding_id, vendor_id, service_cost, service_status)
 (1, 1, 60000, 'booked'),   
 (1, 2, 40000, 'booked'),   
 (2, 3, 70000, 'completed'),
-(2, 4, 30000, 'booked'),   
+(2, 4, 30000, 'completed'),   
 (3, 5, 95000, 'completed'),
-(3, 6, 50000, 'booked'), 
+(3, 6, 50000, 'completed'), 
 (4, 2, 45000, 'booked'),   
 (4, 7, 55000, 'booked'),   
 (5, 1, 60000, 'booked'),   
@@ -168,7 +169,7 @@ INSERT INTO Wedding_vendor (wedding_id, vendor_id, service_cost, service_status)
 (7, 2, 42000, 'completed'),
 (8, 1, 62000, 'pending'),
 (8, 8, 55000, 'booked'),   
-(9, 3, 75000, 'completed'),
+(9, 3, 75000, 'booked'),
 (9, 7, 53000, 'booked'),
 (10, 5, 98000, 'completed'),
 (11, 2, 46000, 'pending'),
@@ -181,7 +182,7 @@ INSERT INTO Task (wedding_id, vendor_id, task_name, assigned_to, deadline, statu
 (1, 1, 'Catering setup', 'Priya', '2025-01-18', 'completed', 'Setup done'),
 (1, 2, 'Photo session', 'Harsh', '2025-01-19', 'completed', 'Album delivered'),
 (2, 3, 'Decoration setup', 'Vijay', '2025-02-10', 'completed', 'Final look approved'),
-(2, 4, 'DJ soundcheck', 'Arjun', '2025-02-13', 'in_progress', 'Half done'),
+(2, 4, 'DJ soundcheck', 'Arjun', '2025-02-13', 'completed', 'Soundcheck done'),
 (3, 5, 'Full planning', 'Rohit', '2025-03-08', 'completed', 'Executed flawlessly'),
 (3, 6, 'Music and Band', 'Karan', '2025-03-09', 'completed', 'Crowd loved it'),
 (4, 7, 'Horse arrival', 'Anita', '2025-04-22', 'pending', 'To be confirmed'),
@@ -190,10 +191,10 @@ INSERT INTO Task (wedding_id, vendor_id, task_name, assigned_to, deadline, statu
 (6, 5, 'Event coordination', 'Vijay', '2025-06-15', 'pending', 'Initial calls done'),
 (7, 6, 'Entertainment setup', 'Harsh', '2025-07-15', 'completed', 'Excellent show'),
 (8, 8, 'Dessert setup', 'Rohit', '2025-08-28', 'in_progress', 'Freezers installed'),
-(9, 1, 'Menu finalization', 'Saurabh', '2025-09-02', 'completed', 'Chef confirmed'),
-(10, 3, 'Decor maintenance', 'Anita', '2025-10-05', 'completed', 'All props ready'),
+(9, 3, 'Decor finalization', 'Saurabh', '2025-09-02', 'completed', 'Design confirmed'),
+(10, 5, 'Final walkthrough', 'Anita', '2025-10-05', 'completed', 'All props ready'),
 (11, 2, 'Photo shoot setup', 'Priya', '2025-11-10', 'in_progress', 'Lights arranged'),
-(12, 4, 'Music preview', 'Karan', '2025-12-15', 'pending', 'Samples being tested');
+(12, 6, 'Music preview', 'Karan', '2025-12-15', 'pending', 'Samples being tested');
 
 
 -- PAYMENT (Venue + Vendor Payments)
@@ -212,5 +213,5 @@ INSERT INTO Payment (wedding_id, venue_id, vendor_id, amount, payment_date, paym
 (8, 3, 8, 55000, '2025-08-29', 'upi', 'pending'),
 (9, 5, 7, 53000, '2025-09-03', 'bank_transfer', 'completed'),
 (10, 4, 5, 98000, '2025-10-08', 'card', 'completed'),
-(11, 2, 2, 46000, '2025-11-13', 'upi', 'pending'),
-(12, 1, 1, 64000, '2025-12-18', 'upi', 'completed');
+(11, 1, 2, 46000, '2025-11-13', 'upi', 'pending'),
+(12, 2, 1, 64000, '2025-12-18', 'upi', 'completed');

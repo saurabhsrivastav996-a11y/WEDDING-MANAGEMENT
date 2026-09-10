@@ -135,7 +135,7 @@ GROUP BY wedding_id;
 -- Update task status
 UPDATE Task
 SET status = 'completed'
-WHERE task_id = 5;
+WHERE task_id = 7;
 
 -- 5️⃣ PAYMENT MANAGEMENT
 
