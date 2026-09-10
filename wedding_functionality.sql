@@ -1,6 +1,8 @@
 
 --  WEDDING MANAGEMENT SYSTEM : FUNCTIONAL QUERIES
 
+USE wedding_management;
+
 
 -- 1️⃣ WEDDING MANAGEMENT
 
@@ -9,7 +11,7 @@ SELECT wedding_id, wedding_date, budget, status
 FROM Wedding
 ORDER BY wedding_date;
 
---view all weddings managed by a user
+-- View all weddings managed by a user
 SELECT 
     w.wedding_id,
     w.wedding_date,
@@ -220,22 +222,29 @@ JOIN User u ON wu.user_id = u.user_id
 ORDER BY w.wedding_date;
 
 -- Wedding summary
+-- Guests, payments and tasks are aggregated separately first: joining all three
+-- directly multiplies the rows and inflates total_payments and completed_tasks.
 INSERT INTO Wedding_Summary (wedding_id, total_guests, total_payments, completed_tasks, status_summary)
-SELECT 
+SELECT
     w.wedding_id,
-    COUNT(DISTINCT wg.guest_id),
-    IFNULL(SUM(p.amount), 0),
-    SUM(CASE WHEN t.status = 'completed' THEN 1 ELSE 0 END),
+    IFNULL(g.total_guests, 0),
+    IFNULL(p.total_payments, 0),
+    IFNULL(t.completed_tasks, 0),
     CONCAT(
-        'Guests: ', COUNT(DISTINCT wg.guest_id),
-        ', Payments: ₹', IFNULL(SUM(p.amount), 0),
-        ', Completed Tasks: ', SUM(CASE WHEN t.status = 'completed' THEN 1 ELSE 0 END)
+        'Guests: ', IFNULL(g.total_guests, 0),
+        ', Payments: ₹', IFNULL(p.total_payments, 0),
+        ', Completed Tasks: ', IFNULL(t.completed_tasks, 0)
     )
 FROM Wedding w
-LEFT JOIN Wedding_guest wg ON w.wedding_id = wg.wedding_id
-LEFT JOIN Payment p ON w.wedding_id = p.wedding_id
-LEFT JOIN Task t ON w.wedding_id = t.wedding_id
-GROUP BY w.wedding_id;
+LEFT JOIN (SELECT wedding_id, COUNT(*) AS total_guests
+           FROM Wedding_guest
+           GROUP BY wedding_id) g ON w.wedding_id = g.wedding_id
+LEFT JOIN (SELECT wedding_id, SUM(amount) AS total_payments
+           FROM Payment
+           GROUP BY wedding_id) p ON w.wedding_id = p.wedding_id
+LEFT JOIN (SELECT wedding_id, SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS completed_tasks
+           FROM Task
+           GROUP BY wedding_id) t ON w.wedding_id = t.wedding_id;
 
 -- Guest distribution by meal preference
 SELECT meal_preference, COUNT(*) AS total_guests

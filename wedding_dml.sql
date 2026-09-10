@@ -1,3 +1,5 @@
+USE wedding_management;
+
 -- Insert Users
 INSERT INTO User (name, email, phone, password, address) VALUES
 ('Saurabh Kumar', 'sauravKumar@example.com', '9876543210', 'pass1', 'Banaras , UP'),
